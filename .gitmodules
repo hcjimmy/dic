@@ -1,0 +1,6 @@
+[submodule "src/libdie"]
+	path = src/libdie
+	url = git@github.com:hcjimmy/libdie.git
+[submodule "src/flagi"]
+	path = src/flagi
+	url = git@github.com:hcjimmy/flagi.git
