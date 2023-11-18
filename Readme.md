@@ -2,7 +2,7 @@
 
 - [Motivations](#motivations)
 - [Usage](#usage)
-- [Install](#install)
+- [Install](#install-build)
 - [Todo](#todo)
 - [Name](#name)
 - [License](#license)
@@ -81,23 +81,23 @@ Note: these problems have nothing to do with dic, but bash. This is because bash
 
 I will soon add support for other parenthesis, until then you can do `dic '3(4)'`.
 
-## Install
+## Install (build)
 
-##### [Linux](#linux), [Windows](#windows) (Build)
+##### [Linux](#linux), [Windows](#windows)
 
 I've only tested this program on Linux, but it *should* work on other platforms.
 
 ### Linux
 
-- Install `cmake`, `gcc` and `make` (should be at your distro's repository).
-- Clone this repo (or download the code above).
-- Enter the `build` directory (in a terminal).
+- Install `git`, `cmake`, `gcc` and `make` (should be at your distro's repository).
+- Go to the directory you wanna keep the source-code.
 - Run:
-
 ```
-cmake ../src -DCMAKE_BUILD_TYPE=Release
-cmake --build . --config Release
-cmake --install .
+git clone --recurse-submodules https://github.com/hcjimmy/dic.git # Download code
+cd dic/build                              # Enter build directory
+cmake ../src -DCMAKE_BUILD_TYPE=Release   # Prepare to build
+cmake --build . --config Release          # Build
+cmake --install .                         # Install
 ```
 
 The command `cmake --install .` may require root. If like me, you prefer local installations, replace it with:
@@ -116,24 +116,24 @@ This will put dic in ~/.local/bin instead, so you'll need to add ~/.local/bin to
 
 #### Prerequisites
 
-Install `cmake`, `clang` and `ninja`, these are tools necessary to build this program.
+Install `git`, `cmake`, `clang` and `ninja`, these tools are necessary (/useful) to get the code and build this program.
 
-It'll probably be simpler to install them through a package manager like [`scoop`](https://scoop.sh/) or [`chocolate`](https://chocolatey.org/install#individual); then you'll just need to run `choco install cmake llvm ninja` or `scoop install main/cmake main/llvm main/ninja` and it'll install and add them to your PATH.
+It'll probably be simpler to install them through a package manager like [`scoop`](https://scoop.sh/) or [`chocolate`](https://chocolatey.org/install#individual); then you'll just need to run `choco install git cmake llvm ninja` or `scoop install main/git main/cmake main/llvm main/ninja` and it'll install and add them to your PATH.
 
 (I don't have windows, but the above commands *should* work).
 
 #### Steps
- 
-- Clone this repository (or just download the code above).
-- Enter the `build` directory inside it (in cmd/powershell, you can shift+right click in windows file-manager IIRC).
+
+- Enter the directory you'd like to keep the source-code (in cmd/powershell, you can shift+right click in windows file-manager IIRC).
 - Run:
-
 ```
-cmake ../src -DCMAKE_BUILD_TYPE=Release
-cmake --build . --config Release
+git clone --recurse-submodules https://github.com/hcjimmy/dic.git # Download code
+cd dic\build                              # Enter build directory
+cmake ..\src -DCMAKE_BUILD_TYPE=Release   # Prepare to build
+cmake --build . --config Release          # Build
 ```
 
-This should make the binary `dic.exe` (either in the current directory or in the `Release` folder).
+After the last command, the binary `dic.exe` should've been created (either in the current directory or in the `Release` folder).
 
 Now outside windows, I know running `cmake --install .` should do the trick (and on windows it'll probably install it in Program Files or something [this is a cmake feature]); but this is a CLI program (command line interface), you'll need to add it to your PATH.
 
@@ -153,7 +153,7 @@ Enjoy.
 
 I know what you're thinking.
 
-For the record, originally dic was _supposed_ to be pronounced diec, short for _diculator_, as in dice-calculator.
+For the record, originally dic was _supposed_ to be pronounced diec, short for diculator, as in dice-calculator.
 
 However _you_ pronounce it though, is your business; much like it is your business how you pronounce gif.
 
