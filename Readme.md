@@ -91,7 +91,7 @@ I've only tested this program on Linux, but it *should* work on other platforms.
 
 - Install `cmake`, `gcc` and `make` (should be at your distro's repository).
 - Clone this repo (or download the code above).
-- Enter the `build` directory inside it (in a terminal).
+- Enter the `build` directory (in a terminal).
 - Run:
 
 ```
@@ -100,7 +100,7 @@ cmake --build . --config Release
 cmake --install .
 ```
 
-The last command may require root. If like me, you prefer local installations, replace it with:
+The command `cmake --install .` may require root. If like me, you prefer local installations, replace it with:
 
 ```
 cmake --install . --prefix ~/.local
