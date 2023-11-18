@@ -81,9 +81,9 @@ Note: these problems have nothing to do with dic, but bash. This is because bash
 
 I will soon add support for other parenthesis, until then you can do `dic '3(4)'`.
 
-## Install (build)
+## Install
 
-##### [Linux](#linux), [Windows](#windows)
+##### [Linux](#linux), [Windows](#windows) (Build)
 
 I've only tested this program on Linux, but it *should* work on other platforms.
 
