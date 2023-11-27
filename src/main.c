@@ -42,11 +42,11 @@
 #define SEE_HELP "See -h or --help for help.\n"
 
 #ifdef EXPAND_DEFAULT
-#define DEF_EXAPAND_STR " (default)"
-#define DEF_COLLPSE_STR ""
+	#define DEF_EXAPAND_STR " (default)"
+	#define DEF_COLLPSE_STR ""
 #else
-#define DEF_EXAPAND_STR ""
-#define DEF_COLLPSE_STR " (default)"
+	#define DEF_EXAPAND_STR ""
+	#define DEF_COLLPSE_STR " (default)"
 #endif
 
 #define HELP_MSG "dic - a dice calculator for TTRPGs.\n"\
@@ -60,7 +60,7 @@
 "  -r    --repeat <n>      Repeat the calculation n times.\n"\
 "  -A    --advantage       Roll twice and take the higher (show the lower greyed-out).\n"\
 "  -D    --disadvantage    Roll twice and take the lower (show the higher greyed-out).\n"\
-"  -c    --collapse        Don't show all the dice-rolls if the die operated by not +-" DEF_COLLPSE_STR ".\n"\
+"  -c    --collapse        Don't show all the dice-rolls if a die is operated by not +-" DEF_COLLPSE_STR ".\n"\
 "                          E.g. dic 2*3d4 will give 2*7 = 14  instead of  2*(2+2+3) = 14.\n"\
 "  -x    --expand          Always show all the dice rolls (opposite of --collpase)" DEF_EXAPAND_STR ".\n"\
 "  -q    --quiet           Don't show the calculation, just the result.\n"\
@@ -70,11 +70,11 @@
 "\n"\
 "Examples:\n"\
 "  dic 2d4                 Roll a 4-sided die 2 times.\n"\
-"  dic d20+5               Roll a 20-sided die and add 5.\n"\
-"  dic d20+5 -r 3          Calculate d20+5, 3 times, and print the results seperately.\n"\
-"  dic -r d4  d20 - d6     Calculate d20-d6, 1d4 times.\n"\
+"  dic d20+3               Roll a 20-sided die 1 time and add 3.\n"\
+"  dic d20+3 -r 4          Calculate d20+3, 4 times, and print the results seperately.\n"\
+"  dic -r d4 d20-d6        Calculate d20-d6, 1d4 times.\n"\
 "\n"\
-"    Allowed operators: +-/*%()\n"
+"    Allowed operators: +-/*%()[]{}\n"
 
 
 #define EPS 0.0000001
@@ -95,8 +95,8 @@ void seed_rand()
  * with mingw64 on Linux for windows... */
 char *stpcpy(char *restrict dst, const char *restrict src)
 {
-	for(; (*dst = *src); ++dst, ++src)
-		;
+	while((*dst = *src))
+		++dst, ++src;
 	return dst;
 }
 
@@ -247,10 +247,8 @@ void fprint_result(FILE* fp, char *calc_string, double result, bool quiet, bool 
 {
 #define RESULT_PRESICIION 9
 
-	if(greyed_out) {
-		fputs(COLOR_STRIKE_THROUGH, fp);
-		fputs(COLOR_GREY, fp);
-	}
+	if(greyed_out)
+		fputs(COLOR_STRIKE_THROUGH COLOR_GREY, fp);
 
 	char *result_buffer = alloca((snprintf(NULL, 0, "%." STRINGER(RESULT_PRESICIION) "lf", result) + 1)
 					* sizeof((*result_buffer)));
@@ -272,6 +270,7 @@ void print_result(char *calc_string, double result, bool quiet, bool greyed_out)
 {
 	fprint_result(stdout, calc_string, result, quiet, greyed_out);
 }
+
 // Temporary macros for clarification.
 #define STRIKE_THROUGH true
 #define DONT_STRIKE false
@@ -321,6 +320,7 @@ int roll_exp_inner(struct Operation *operation, char *dice_exp, size_t repeats,
 	char* calc_string1;
 	char* calc_string2;
 
+	// Allocate calculation string buffers if needed.
 	if(!quiet) {
 		calc_string1 = malloc(get_calc_string_length(operation) * sizeof(*calc_string1));
 		if(!calc_string1)

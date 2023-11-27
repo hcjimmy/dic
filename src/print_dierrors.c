@@ -27,7 +27,7 @@ void fprint_c_xtimes(FILE* fp, char c, size_t x)
 }
 
 #define GET_DIERROR_TYPE_AS_STR_LITERAL(derror_type) (\
-	  ((derror_type) == multiple_operators) ? "invalid operator"\
+	  ((derror_type) == invalid_operator) ? "invalid operator"\
 	: ((derror_type) == invalid_num) ? "invalid number"\
 	: ((derror_type) == missing_num) ? "missing number"\
 	: ((derror_type) == invalid_reps) ? "invalid number of rolls"\
@@ -40,7 +40,7 @@ void fprint_c_xtimes(FILE* fp, char c, size_t x)
 	: "I can't roll nuthin'")	// == empty_expression
 
 #define GET_DIERROR_TYPE_AS_STR_LITERAL_CAPITAL_START(derror_type) (\
-	  ((derror_type) == multiple_operators) ? "Invalid operator"\
+	  ((derror_type) == invalid_operator) ? "Invalid operator"\
 	: ((derror_type) == invalid_num) ? "Invalid number"\
 	: ((derror_type) == missing_num) ? "Missing number"\
 	: ((derror_type) == invalid_reps) ? "Invalid number of rolls"\

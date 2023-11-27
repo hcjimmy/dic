@@ -54,7 +54,7 @@ Options:
   -r    --repeat <n>      Repeat the calculation n times.
   -A    --advantage       Roll twice and take the higher (show the lower greyed-out).
   -D    --disadvantage    Roll twice and take the lower (show the higher greyed-out).
-  -c    --collapse        Don't show all the dice-rolls if the die operated by not +- (default).
+  -c    --collapse        Don't show all the dice-rolls if a die is operated by not +- (default).
                           E.g. dic 2*3d4 will give 2*7 = 14  instead of  2*(2+2+3) = 14.
   -x    --expand          Always show all the dice rolls (opposite of --collpase).
   -q    --quiet           Don't show the calculation, just the result.
@@ -64,22 +64,20 @@ Options:
 
 Examples:
   dic 2d4                 Roll a 4-sided die 2 times.
-  dic d20+5               Roll a 20-sided die and add 5.
-  dic d20+5 -r 3          Calculate d20+5, 3 times, and print the results seperately.
-  dic -r d4  d20 - d6     Calculate d20-d6, 1d4 times.
+  dic d20+3               Roll a 20-sided die 1 time and add 3.
+  dic d20+3 -r 4          Calculate d20+3, 4 times, and print the results seperately.
+  dic -r d4 d20-d6        Calculate d20-d6, 1d4 times.
 
-    Allowed operators: +-/*%()
+    Allowed operators: +-/*%()[]{}
 ```
 
 ### Limitations
 
-- Running `dic 2 * 3` will result in bash expanding `*` to all the files in the current directory... admittedly the output can be pretty funny though...
+- Running `dic 2 * 3` will result in bash expanding `*` to all the files in the current directory... admittedly the output can be pretty funny though... (`dic 2*3` should work better).
 
-- Running `dic 3(4)` on bash will result in ``bash: syntax error near unexpected token `('``...
+- Running `dic 3(4)` on bash will result in ``bash: syntax error near unexpected token `('``... but you can just do `dic 3[4]`.
 
 Note: these problems have nothing to do with dic, but bash. This is because bash sometimes modifies the input written to it (as defined by it's syntax) before passing it to the program. This is usually good (it's convenient).
-
-I will soon add support for other parenthesis, until then you can do `dic '3(4)'`.
 
 ## Install (build)
 
@@ -145,7 +143,7 @@ Enjoy.
 
 ## Todo
 
-- [ ] Support other kinds of parenthesis, so bash will be happy `[]{}`.
+- [x] Support other kinds of parenthesis, so bash will be happy `[]{}`.
 - [ ] Provide binaries (and maybe an installer through cmake?), ideally built on github's servers.
 - [ ] Interactive mode?
 
