@@ -1,5 +1,5 @@
 /* dic - a cli dice calculator - main.
- * Copyright (C) 2023  hcjimmy
+ * Copyright (C) 2024  hcjimmy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@
 "  dic d20+3 -r 4          Calculate d20+3, 4 times, and print the results seperately.\n"\
 "  dic -r d4 d20-d6        Calculate d20-d6, 1d4 times.\n"\
 "\n"\
-"    Allowed operators: +-/*%()[]{}\n"
+"    Allowed operators: +-/*%^()[]{}\n"
 
 
 #define EPS 0.0000001

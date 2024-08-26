@@ -68,7 +68,7 @@ Examples:
   dic d20+3 -r 4          Calculate d20+3, 4 times, and print the results seperately.
   dic -r d4 d20-d6        Calculate d20-d6, 1d4 times.
 
-    Allowed operators: +-/*%()[]{}
+    Allowed operators: +-/*%^()[]{}
 ```
 
 ### Limitations
